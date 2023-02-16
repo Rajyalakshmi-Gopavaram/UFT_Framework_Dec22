@@ -1,0 +1,651 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="HPE Unified Functional Testing" productVer="14.03" os="" host="LIN33005639"><DocLocation><![CDATA[C:\framework\QTP-Hybrid-Framework\QTP-Hybrid-Framework\TestCases\copyAction]]></DocLocation></General>
+<Doc rID="T1"   productName= "HPE Unified Functional Testing"  >
+<DName><![CDATA[copyAction]]></DName>
+<Res><![CDATA[Res1]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[login]]></AName>
+<Action rID="T5">
+<AName><![CDATA[Copy of login]]></AName>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[15-02-2023 - 12:28:41]]></Time>
+<TimeTick>1676444321</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Details>
+<Time><![CDATA[15-02-2023 - 12:28:41]]></Time>
+<TimeTick>1676444321</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="12" status="Passed" Source="Copy of login" SourceLine="0" >
+<Disp><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="11" status="Passed" Source="Copy of login" SourceLine="0" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Welcome: Mercury Tours]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:02]]></Time>
+<TimeTick>1676444342</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA["Welcome: Mercury Tours"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (6 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (6 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Welcome: Mercury Tours<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Welcome: Mercury Tours<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://demo.guru99.com/test/newtours<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=Welcome: Mercury Tours<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=7<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:02]]></Time>
+<TimeTick>1676444342</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="15" Source="Copy of login" SourceLine="1" >
+<Disp><![CDATA["Welcome: Mercury Tours"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Welcome: Mercury Tours]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:02]]></Time>
+<TimeTick>1676444342</TimeTick>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[REGISTER.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:02]]></Time>
+<TimeTick>1676444342</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="18" Source="Copy of login" SourceLine="1" >
+<Disp><![CDATA[REGISTER.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="17" Source="Copy of login" SourceLine="1" >
+<Disp><![CDATA[Welcome: Mercury Tours]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Register: Mercury Tours]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:03]]></Time>
+<TimeTick>1676444343</TimeTick>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[firstName.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Gopavaram"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:03]]></Time>
+<TimeTick>1676444343</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="23" Source="Copy of login" SourceLine="2" >
+<Disp><![CDATA[firstName.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[lastName.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Rajyalakshmi"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:04]]></Time>
+<TimeTick>1676444344</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="26" Source="Copy of login" SourceLine="3" >
+<Disp><![CDATA[lastName.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[phone.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["8332867150"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:05]]></Time>
+<TimeTick>1676444345</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="29" Source="Copy of login" SourceLine="4" >
+<Disp><![CDATA[phone.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[userName.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["r161176@rguktrkv.ac.in"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:05]]></Time>
+<TimeTick>1676444345</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="32" Source="Copy of login" SourceLine="5" >
+<Disp><![CDATA[userName.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[address1.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Ashramam Nagar"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="35" Source="Copy of login" SourceLine="6" >
+<Disp><![CDATA[address1.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[city.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Badvel"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="38" Source="Copy of login" SourceLine="7" >
+<Disp><![CDATA[city.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[state.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Andhra Pradesh"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="41" Source="Copy of login" SourceLine="8" >
+<Disp><![CDATA[state.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[postalCode.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["516227"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="44" Source="Copy of login" SourceLine="9" >
+<Disp><![CDATA[postalCode.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[country.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["INDIA"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="47" Source="Copy of login" SourceLine="10" >
+<Disp><![CDATA[country.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[email.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Gopavaram Rajyalakshmi"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="50" Source="Copy of login" SourceLine="11" >
+<Disp><![CDATA[email.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[password.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["63e4cd845d64ab7aff332c9e8e9e89626135ffaa9b5f67dd2813"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="53" Source="Copy of login" SourceLine="12" >
+<Disp><![CDATA[password.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[confirmPassword.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["63e4cd8be09d2b51139b2123ac0feed1058210fa811471947a6d"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="56" Source="Copy of login" SourceLine="13" >
+<Disp><![CDATA[confirmPassword.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Submit Query.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:06]]></Time>
+<TimeTick>1676444346</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="59" Source="Copy of login" SourceLine="14" >
+<Disp><![CDATA[Submit Query.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="22" Source="Copy of login" SourceLine="2" >
+<Disp><![CDATA[Register: Mercury Tours]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[Register: Mercury Tours_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:11]]></Time>
+<TimeTick>1676444351</TimeTick>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[SIGN-OFF.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:11]]></Time>
+<TimeTick>1676444351</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="63" Source="Copy of login" SourceLine="15" >
+<Disp><![CDATA[SIGN-OFF.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="62" Source="Copy of login" SourceLine="15" >
+<Disp><![CDATA[Register: Mercury Tours_2]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="14" Source="Copy of login" SourceLine="1" >
+<Disp><![CDATA[Welcome: Mercury Tours]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="15-02-2023 - 12:28:41" eTime="15-02-2023 - 12:29:11" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="8" status="Passed" >
+<Disp><![CDATA[Copy of login Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Action rID="T28">
+<AName><![CDATA[Action1 [rediif]]]></AName>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[Rediffmail Free Unlimited]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:31]]></Time>
+<TimeTick>1676444371</TimeTick>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA["Rediffmail Free Unlimited"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (6 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (6 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Rediffmail Free Unlimited Storage<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>title=Rediffmail Free Unlimited Storage<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openurl=https://statics.teams.cdn.office.net/evergreen-assets/safelinks/1/atp-safelinks.html<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>opentitle=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=11<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:31]]></Time>
+<TimeTick>1676444371</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="68" Source="Action1 [rediif]" SourceLine="0" >
+<Disp><![CDATA["Rediffmail Free Unlimited"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[Rediffmail Free Unlimited]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:32]]></Time>
+<TimeTick>1676444372</TimeTick>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA["wrapper"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:32]]></Time>
+<TimeTick>1676444372</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="71" status="Warning" Source="Action1 [rediif]" SourceLine="0" >
+<Disp><![CDATA["wrapper"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA["wrapper"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=WebElement<br>innertext=Home  &ltdiv style="background:none repeat scroll 0 0 #FFFF99;border:1px solid #FFCC33;margin:0px 0px 20px 0px;padding:5px;"&gtYour browser does not support JavaScript or it may be disabled. Please enable JavaScript to continue.&lt/div&gt Create a Rediffmail account Full Name : Enter your first name & last nameEg. Sameer Bhagwat Choose a Rediffmail ID : @rediffmail.com var ts_new = 'MTY3NTY4NDUyMw=='; Password : New password: • must contain 8-100 characters • must contain both upper and lower case characters • must contain numeric characters • must contain special characters • must be different from last 3 passwords used • must not contain your username or firstname or lastname Retype password : Alternate Email Address :  Click if you don't have an alternate ID Select a Security Question : Select from the list What is the name of your first school? What is your favourite pass-time? What is your favourite food? What is your exact time of birth? Enter an Answer : Mother's Maiden Name : Enter your mother's namebefore marriage Verification Code : Mobile No. : India (+91) USA / Canada (+1) United Kingdom (+44) Afghanistan (+93) Albania (+355) Algeria (+213) American Samoa (+1684) Andorra (+376) Angola (+244) Anguilla (+1264) Antarctica (+672) Antigua And Barbuda (+1268) Argentina (+54) Armenia (+374) Aruba (+297) Australia (+61) Austria (+43) Azerbaijan (+994) Bahamas (+1242) Bahrain (+973) Bangladesh (+880) Barbados (+1246) Belarus (+375) Belgium (+32) Belize (+501) Benin (+229) Bermuda (+1441) Bhutan (+975) Bolivia (+591) Bosnia And Herzegovina (+387) Botswana (+267) Brazil (+55) Brunei Darussalam (+673) Bulgaria (+359) Burkina Faso (+226) Burundi (+257) Cambodia (+855) Cameroon (+237) Cape Verde (+238) Cayman Islands (+1345) Central African Republic (+236) Chad (+235) Chile (+56) China (+86) Colombia (+57) Comoros (+269) Congo (+242) Cook Islands (+682) Costa Rica (+506) Cuba (+53) Cyprus (+357) Czech Republic (+420) Denmark (+45) Djibouti (+253) Ecuador (+593) Egypt (+20) El Salvador (+503) Equatorial Guinea (+240) Eritrea (+291) Estonia (+372) Ethiopia (+251) Falkland Islands (+500) Faroe Islands (+298) Federated States Of Micronesia (+691) Fiji (+679) Finland (+358) France (+33) Gabon (+241) Gambia (+220) Georgia (+995) Germany (+49) Ghana (+233) Gibraltar (+350) Greece (+30) Greenland (+299) Grenada (+1473) Guadeloupe (+590) Guam (+1671) Guatemala (+502) Guinea (+224) Guinea-Bissau (+245) Guyana (+592) Haiti (+509) Honduras (+504) Hong Kong (+852) Hungary (+36) Iceland (+354) Indonesia (+62) Iran (+98) Iraq (+964) Ireland (+353) Israel (+972) Italy (+39) Jamaica (+1876) Japan (+81) Jordan (+962) Kazakhstan (+77) Kenya (+254) Kiribati (+686) Kuwait (+965) Kyrgyzstan (+996) Laos (+856) Latvia (+371) Lebanon (+961) Lesotho (+266) Liberia (+231) Libya (+218) Liechtenstein (+423) Lithuania (+370) Luxembourg (+352) Macau (+853) Macedonia (+389) Madagascar (+261) Malawi (+265) Malaysia (+60) Maldives (+960) Mali (+223) Malta (+356) Marshall Islands (+692) Martinique (+596) Mauritania (+222) Mauritius (+230) Mexico (+52) Monaco (+377) Mongolia (+976) Montenegro (+382) Morocco (+212) Mozambique (+258) Myanmar (+95) Namibia (+264) Nepal (+977) Netherlands (+31) Netherlands Antilles (+599) New Caledonia (+687) New Zealand (+64) Nicaragua (+505) Niger (+227) Nigeria (+234) Northern Mariana Islands (+1670) Norway (+47) Oman (+968) Pakistan (+92) Palau (+680) Palestine (+970) Panama (+507) Papua New Guinea (+675) Paraguay (+595) Peru (+51) Philippines (+63) Poland (+48) Portugal (+351) Puerto Rico (+1787) Qatar (+974) Reunion (+262) Romania (+40) Russian Federation (+7) Rwanda (+250) Saint Kitts And Nevis (+1869) Saint Lucia (+1758) Samoa (+685) San Marino (+378) Sao Tome And Principe (+239) Saudi Arabia (+966) Senegal (+221) Seychelles (+248) Sierra Leone (+232) Singapore (+65) Slovakia (+421) Slovenia (+386) Solomon Islands (+677) Somalia (+252) South Africa (+27) South Korea (+82) South Sudan (+211) Spain (+34) Sri Lanka (+94) Sudan (+249) Suriname (+597) Swaziland (+268) Sweden (+46) Switzerland (+41) Syria (+963) Taiwan (+886) Tajikistan (+992) Tanzania (+255) Thailand (+66) Togo (+228) Tonga (+676) Trinidad And Tobago (+1868) Tunisia (+216) Turkey (+90) Turkmenistan (+993) Turks And Caicos Islands (+1649) Uganda (+256) Ukraine (+380) United Arab Emirates (+971) Uruguay (+598) Uzbekistan (+998) Vanuatu (+678) Venezuela (+58) Vietnam (+84) Yemen (+967) Zambia (+260) +91 If you forget your password,recover your password via text message. Date of Birth : Day01020304050607080910111213141516171819202122232425262728293031 MonthJANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC Year 2023 2022 2021 2020 2019 2018 2017 2016 2015 2014 2013 2012 2011 2010 2009 2008 2007 2006 2005 2004 2003 2002 2001 2000 1999 1998 1997 1996 1995 1994 1993 1992 1991 1990 1989 1988 1987 1986 1985 1984 1983 1982 1981 1980 1979 1978 1977 1976 1975 1974 1973 1972 1971 1970 1969 1968 1967 1966 1965 1964 1963 1962 1961 1960 1959 1958 1957 1956 1955 1954 1953 1952 1951 1950 1949 1948 1947 1946 1945 1944 1943 1942 1941 1940 1939 1938 1937 1936 1935 1934 1933 1932 1931 1930 1929 1928 1927 1926 1925 1924 Gender : Male   Female I live inCountry : India American Samoa Andorra Angola Anguilla Antarctica Antigua And Barbuda Argentina Armenia Aruba Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin Bermuda Bhutan Bolivia Bosnia and Herzegovina Botswana Bouvet Island Brazil British Indian Ocean Territory Brunei Bulgaria Burkina Faso Burundi Cambodia Cameroon Canada Cape Verde Cayman Islands Central African Republic Chad Chile China China (Hong Kong S.A.R.) China (Macau S.A.R.) Christmas Island Cocos (Keeling) Islands Colombia Comoros Congo Congo Democractic Republic of the Cook Islands Costa Rica Cote D'Ivoire (Ivory Coast) Croatia (Hrvatska) Cuba Cyprus Czech Republic Denmark Djibouti Dominica Dominican Republic East Timor Ecuador Egypt El Salvador Equatorial Guinea Eritrea Estonia Ethiopia Falkland Islands (Islas Malvinas) Faroe Islands Fiji Islands Finland France French Guiana French Polynesia French Southern Territories Gabon Gambia Georgia Germany Ghana Gibraltar Greece Greenland Grenada Guadeloupe Guam Guatemala Guinea Guinea-Bissau Guyana Haiti Heard and McDonald Islands Honduras Hungary Iceland Indonesia Iran Iraq Ireland Israel Italy Jamaica Japan Jordan Kazakhstan Kenya Kiribati Korea Korea North Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macedonia Former Yugoslav Republic of Madagascar Malawi Malaysia Maldives Mali Malta Marshall Islands Martinique Mauritania Mauritius Mayotte Mexico Micronesia Moldova Monaco Mongolia Montserrat Morocco Mozambique Myanmar Namibia Nauru Nepal Netherlands Antilles Netherlands New Caledonia New Zealand Nicaragua Niger Nigeria Niue Norfolk Island Northern Mariana Islands Norway Oman Pakistan Palau Panama Papua new Guinea Paraguay Peru Philippines Pitcairn Island Poland Portugal Puerto Rico Qatar Reunion Romania Russia Rwanda Saint Helena Saint Kitts And Nevis Saint Lucia Saint Pierre and Miquelon Saint Vincent And The Grenadines Samoa San Marino Sao Tome and Principe Saudi Arabia Senegal Seychelles Sierra Leone Singapore Slovakia Slovenia Solomon Islands Somalia South Africa South Georgia And The South Sandwich Islands Spain Sri Lanka Sudan Suriname Svalbard And Jan Mayen Islands Swaziland Sweden Switzerland Syria Taiwan Tajikistan Tanzania Thailand Togo Tokelau Tonga Trinidad And Tobago Tunisia Turkey Turkmenistan Turks And Caicos Islands Tuvalu Uganda Ukraine United Arab Emirates United Kingdom United States United States Minor Outlying Islands Uruguay Uzbekistan Vanuatu Vatican City State (Holy See) Venezuela Vietnam Virgin Islands (British) Virgin Islands (US) Wallis And Futuna Islands Western Sahara Yemen Yugoslavia Zambia Zimbabwe Afghanistan Albania Algeria Gaza Strip United Kingdom Jersey Kosovo Montenegro Saint Barthelemy Saint Martin Serbia Timor-Leste West Bank City   : Select Agartala Agra Ahmedabad Aizwal Aligarh Allahabad Amritsar Aurangabad Bangalore Baroda Bhopal Bhubaneshwar Bokaro Chandigarh Chennai Cochin Coimbatore Cuttack Dehradun Delhi Dimapur Durgapur Faridabad Gandhinagar Ghaziabad Goa Gurgaon Guwahati Gwalior Hyderabad Imphal Indore Jabalpur Jaipur Jammu Jamnagar Jamshedpur Jodhpur Jullundhar Kanpur Kolhapur Kolkata Lucknow Ludhiana Madurai Mangalore Margaon Mumbai Mysore Nagpur Nasik NOIDA Patna Panjim Pondicherry Pune Raipur Ranchi Rourkela Rajkot Salem Secunderabad Shillong Siliguri Srinagar Surat Thane Thiruvananthapuram Tiruchirapalli Udaipur Varanasi Vellore Vijaywada Vishakapatnam Other Enter the text shown above : By clicking on 'Create my account' above, you confirm that you accept the terms and conditions & privacy policy<br>html tag=DIV<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (18 objects found)&nbsp;</FONT></u><br>
+micclass=WebElement<br>html tag=DIV<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+html id=wrapper<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>class=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>innertext=Home  &ltdiv style="background:none repeat scroll 0 0 #FFFF99;border:1px solid #FFCC33;margin:0px 0px 20px 0px;padding:5px;"&gtYour browser does not support JavaScript or it may be disabled. Please enable JavaScript to continue.&lt/div&gt Create a Rediffmail account Full Name : Enter your first name & last nameEg. Sameer Bhagwat Choose a Rediffmail ID : @rediffmail.com var ts_new = 'MTY3NTY4NDUyMw=='; Password : New password: • must contain 8-100 characters • must contain both upper and lower case characters • must contain numeric characters • must contain special characters • must be different from last 3 passwords used • must not contain your username or firstname or lastname Retype password : Alternate Email Address :  Click if you don't have an alternate ID Select a Security Question : Select from the list What is the name of your first school? What is your favourite pass-time? What is your favourite food? What is your exact time of birth? Enter an Answer : Mother's Maiden Name : Enter your mother's namebefore marriage Verification Code : Mobile No. : India (+91) USA / Canada (+1) United Kingdom (+44) Afghanistan (+93) Albania (+355) Algeria (+213) American Samoa (+1684) Andorra (+376) Angola (+244) Anguilla (+1264) Antarctica (+672) Antigua And Barbuda (+1268) Argentina (+54) Armenia (+374) Aruba (+297) Australia (+61) Austria (+43) Azerbaijan (+994) Bahamas (+1242) Bahrain (+973) Bangladesh (+880) Barbados (+1246) Belarus (+375) Belgium (+32) Belize (+501) Benin (+229) Bermuda (+1441) Bhutan (+975) Bolivia (+591) Bosnia And Herzegovina (+387) Botswana (+267) Brazil (+55) Brunei Darussalam (+673) Bulgaria (+359) Burkina Faso (+226) Burundi (+257) Cambodia (+855) Cameroon (+237) Cape Verde (+238) Cayman Islands (+1345) Central African Republic (+236) Chad (+235) Chile (+56) China (+86) Colombia (+57) Comoros (+269) Congo (+242) Cook Islands (+682) Costa Rica (+506) Cuba (+53) Cyprus (+357) Czech Republic (+420) Denmark (+45) Djibouti (+253) Ecuador (+593) Egypt (+20) El Salvador (+503) Equatorial Guinea (+240) Eritrea (+291) Estonia (+372) Ethiopia (+251) Falkland Islands (+500) Faroe Islands (+298) Federated States Of Micronesia (+691) Fiji (+679) Finland (+358) France (+33) Gabon (+241) Gambia (+220) Georgia (+995) Germany (+49) Ghana (+233) Gibraltar (+350) Greece (+30) Greenland (+299) Grenada (+1473) Guadeloupe (+590) Guam (+1671) Guatemala (+502) Guinea (+224) Guinea-Bissau (+245) Guyana (+592) Haiti (+509) Honduras (+504) Hong Kong (+852) Hungary (+36) Iceland (+354) Indonesia (+62) Iran (+98) Iraq (+964) Ireland (+353) Israel (+972) Italy (+39) Jamaica (+1876) Japan (+81) Jordan (+962) Kazakhstan (+77) Kenya (+254) Kiribati (+686) Kuwait (+965) Kyrgyzstan (+996) Laos (+856) Latvia (+371) Lebanon (+961) Lesotho (+266) Liberia (+231) Libya (+218) Liechtenstein (+423) Lithuania (+370) Luxembourg (+352) Macau (+853) Macedonia (+389) Madagascar (+261) Malawi (+265) Malaysia (+60) Maldives (+960) Mali (+223) Malta (+356) Marshall Islands (+692) Martinique (+596) Mauritania (+222) Mauritius (+230) Mexico (+52) Monaco (+377) Mongolia (+976) Montenegro (+382) Morocco (+212) Mozambique (+258) Myanmar (+95) Namibia (+264) Nepal (+977) Netherlands (+31) Netherlands Antilles (+599) New Caledonia (+687) New Zealand (+64) Nicaragua (+505) Niger (+227) Nigeria (+234) Northern Mariana Islands (+1670) Norway (+47) Oman (+968) Pakistan (+92) Palau (+680) Palestine (+970) Panama (+507) Papua New Guinea (+675) Paraguay (+595) Peru (+51) Philippines (+63) Poland (+48) Portugal (+351) Puerto Rico (+1787) Qatar (+974) Reunion (+262) Romania (+40) Russian Federation (+7) Rwanda (+250) Saint Kitts And Nevis (+1869) Saint Lucia (+1758) Samoa (+685) San Marino (+378) Sao Tome And Principe (+239) Saudi Arabia (+966) Senegal (+221) Seychelles (+248) Sierra Leone (+232) Singapore (+65) Slovakia (+421) Slovenia (+386) Solomon Islands (+677) Somalia (+252) South Africa (+27) South Korea (+82) South Sudan (+211) Spain (+34) Sri Lanka (+94) Sudan (+249) Suriname (+597) Swaziland (+268) Sweden (+46) Switzerland (+41) Syria (+963) Taiwan (+886) Tajikistan (+992) Tanzania (+255) Thailand (+66) Togo (+228) Tonga (+676) Trinidad And Tobago (+1868) Tunisia (+216) Turkey (+90) Turkmenistan (+993) Turks And Caicos Islands (+1649) Uganda (+256) Ukraine (+380) United Arab Emirates (+971) Uruguay (+598) Uzbekistan (+998) Vanuatu (+678) Venezuela (+58) Vietnam (+84) Yemen (+967) Zambia (+260) +91 If you forget your password,recover your password via text message. Date of Birth : Day01020304050607080910111213141516171819202122232425262728293031 MonthJANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC Year 2023 2022 2021 2020 2019 2018 2017 2016 2015 2014 2013 2012 2011 2010 2009 2008 2007 2006 2005 2004 2003 2002 2001 2000 1999 1998 1997 1996 1995 1994 1993 1992 1991 1990 1989 1988 1987 1986 1985 1984 1983 1982 1981 1980 1979 1978 1977 1976 1975 1974 1973 1972 1971 1970 1969 1968 1967 1966 1965 1964 1963 1962 1961 1960 1959 1958 1957 1956 1955 1954 1953 1952 1951 1950 1949 1948 1947 1946 1945 1944 1943 1942 1941 1940 1939 1938 1937 1936 1935 1934 1933 1932 1931 1930 1929 1928 1927 1926 1925 1924 Gender : Male   Female I live inCountry : India American Samoa Andorra Angola Anguilla Antarctica Antigua And Barbuda Argentina Armenia Aruba Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin Bermuda Bhutan Bolivia Bosnia and Herzegovina Botswana Bouvet Island Brazil British Indian Ocean Territory Brunei Bulgaria Burkina Faso Burundi Cambodia Cameroon Canada Cape Verde Cayman Islands Central African Republic Chad Chile China China (Hong Kong S.A.R.) China (Macau S.A.R.) Christmas Island Cocos (Keeling) Islands Colombia Comoros Congo Congo Democractic Republic of the Cook Islands Costa Rica Cote D'Ivoire (Ivory Coast) Croatia (Hrvatska) Cuba Cyprus Czech Republic Denmark Djibouti Dominica Dominican Republic East Timor Ecuador Egypt El Salvador Equatorial Guinea Eritrea Estonia Ethiopia Falkland Islands (Islas Malvinas) Faroe Islands Fiji Islands Finland France French Guiana French Polynesia French Southern Territories Gabon Gambia Georgia Germany Ghana Gibraltar Greece Greenland Grenada Guadeloupe Guam Guatemala Guinea Guinea-Bissau Guyana Haiti Heard and McDonald Islands Honduras Hungary Iceland Indonesia Iran Iraq Ireland Israel Italy Jamaica Japan Jordan Kazakhstan Kenya Kiribati Korea Korea North Kuwait Kyrgyzstan Laos Latvia Lebanon Lesotho Liberia Libya Liechtenstein Lithuania Luxembourg Macedonia Former Yugoslav Republic of Madagascar Malawi Malaysia Maldives Mali Malta Marshall Islands Martinique Mauritania Mauritius Mayotte Mexico Micronesia Moldova Monaco Mongolia Montserrat Morocco Mozambique Myanmar Namibia Nauru Nepal Netherlands Antilles Netherlands New Caledonia New Zealand Nicaragua Niger Nigeria Niue Norfolk Island Northern Mariana Islands Norway Oman Pakistan Palau Panama Papua new Guinea Paraguay Peru Philippines Pitcairn Island Poland Portugal Puerto Rico Qatar Reunion Romania Russia Rwanda Saint Helena Saint Kitts And Nevis Saint Lucia Saint Pierre and Miquelon Saint Vincent And The Grenadines Samoa San Marino Sao Tome and Principe Saudi Arabia Senegal Seychelles Sierra Leone Singapore Slovakia Slovenia Solomon Islands Somalia South Africa South Georgia And The South Sandwich Islands Spain Sri Lanka Sudan Suriname Svalbard And Jan Mayen Islands Swaziland Sweden Switzerland Syria Taiwan Tajikistan Tanzania Thailand Togo Tokelau Tonga Trinidad And Tobago Tunisia Turkey Turkmenistan Turks And Caicos Islands Tuvalu Uganda Ukraine United Arab Emirates United Kingdom United States United States Minor Outlying Islands Uruguay Uzbekistan Vanuatu Vatican City State (Holy See) Venezuela Vietnam Virgin Islands (British) Virgin Islands (US) Wallis And Futuna Islands Western Sahara Yemen Yugoslavia Zambia Zimbabwe Afghanistan Albania Algeria Gaza Strip United Kingdom Jersey Kosovo Montenegro Saint Barthelemy Saint Martin Serbia Timor-Leste West Bank City   : Select Agartala Agra Ahmedabad Aizwal Aligarh Allahabad Amritsar Aurangabad Bangalore Baroda Bhopal Bhubaneshwar Bokaro Chandigarh Chennai Cochin Coimbatore Cuttack Dehradun Delhi Dimapur Durgapur Faridabad Gandhinagar Ghaziabad Goa Gurgaon Guwahati Gwalior Hyderabad Imphal Indore Jabalpur Jaipur Jammu Jamnagar Jamshedpur Jodhpur Jullundhar Kanpur Kolhapur Kolkata Lucknow Ludhiana Madurai Mangalore Margaon Mumbai Mysore Nagpur Nasik NOIDA Patna Panjim Pondicherry Pune Raipur Ranchi Rourkela Rajkot Salem Secunderabad Shillong Siliguri Srinagar Surat Thane Thiruvananthapuram Tiruchirapalli Udaipur Varanasi Vellore Vijaywada Vishakapatnam Other Enter the text shown above : By clicking on 'Create my account' above, you confirm that you accept the terms and conditions & privacy policy<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>visible=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:32]]></Time>
+<TimeTick>1676444372</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="72" Source="Action1 [rediif]" SourceLine="0" >
+<Disp><![CDATA["wrapper"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[wrapper.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:32]]></Time>
+<TimeTick>1676444372</TimeTick>
+<NodeArgs eType="Replay" icon="14" nRep="73" Source="Action1 [rediif]" SourceLine="0" >
+<Disp><![CDATA[wrapper.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA["namef80cbbad"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:53]]></Time>
+<TimeTick>1676444393</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="115" status="Warning" Source="Action1 [rediif]" SourceLine="1" >
+<Disp><![CDATA["namef80cbbad"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA["namef80cbbad"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=text<br>name=namef80cbbad<br>micclass=WebEdit<br>html tag=INPUT<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (8 objects found)&nbsp;</FONT></u><br>
+type=text<br>micclass=WebEdit<br>html tag=INPUT<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=namef80cbbad<SPAN class=Failed> (Skipped)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 7 matches)</SPAN><br>max length=61<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>default value=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>class=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>rows=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>placeholder=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:53]]></Time>
+<TimeTick>1676444393</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="116" Source="Action1 [rediif]" SourceLine="1" >
+<Disp><![CDATA["namef80cbbad"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[namef80cbbad.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Gopavaram Rajyalakshmi"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:53]]></Time>
+<TimeTick>1676444393</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="117" Source="Action1 [rediif]" SourceLine="1" >
+<Disp><![CDATA[namef80cbbad.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[loginf80cbbad.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["rajyalakshmi_gopavaram"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:53]]></Time>
+<TimeTick>1676444393</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="120" Source="Action1 [rediif]" SourceLine="2" >
+<Disp><![CDATA[loginf80cbbad.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[Check availability.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[15-02-2023 - 12:29:53]]></Time>
+<TimeTick>1676444393</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="123" Source="Action1 [rediif]" SourceLine="3" >
+<Disp><![CDATA[Check availability.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA["passwdf80cbbad"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:14]]></Time>
+<TimeTick>1676444414</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="165" status="Warning" Source="Action1 [rediif]" SourceLine="4" >
+<Disp><![CDATA["passwdf80cbbad"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA["passwdf80cbbad"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=password<br>name=passwdf.*<br>micclass=WebEdit<br>html tag=INPUT<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (3 objects found)&nbsp;</FONT></u><br>
+type=password<br>micclass=WebEdit<br>html tag=INPUT<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=passwdf.*<SPAN class=Failed> (Skipped)</SPAN><br>html id=newpasswd<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>max length=524288<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>default value=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>class=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>rows=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>placeholder=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:14]]></Time>
+<TimeTick>1676444414</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="166" Source="Action1 [rediif]" SourceLine="4" >
+<Disp><![CDATA["passwdf80cbbad"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[passwdf80cbbad.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["63e0ead633453ad749eaf3b57bb1"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:14]]></Time>
+<TimeTick>1676444414</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="167" Source="Action1 [rediif]" SourceLine="4" >
+<Disp><![CDATA[passwdf80cbbad.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA["confirm_passwdf80cbbad"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:35]]></Time>
+<TimeTick>1676444435</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="209" status="Warning" Source="Action1 [rediif]" SourceLine="5" >
+<Disp><![CDATA["confirm_passwdf80cbbad"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA["confirm_passwdf80cbbad"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=password<br>name=confirm_passwdf.*<br>micclass=WebEdit<br>html tag=INPUT<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (3 objects found)&nbsp;</FONT></u><br>
+type=password<br>micclass=WebEdit<br>html tag=INPUT<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=confirm_passwdf.*<SPAN class=Failed> (Skipped)</SPAN><br>html id=newpasswd1<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>max length=524288<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>default value=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>class=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>rows=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>placeholder=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:35]]></Time>
+<TimeTick>1676444435</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="210" Source="Action1 [rediif]" SourceLine="5" >
+<Disp><![CDATA["confirm_passwdf80cbbad"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[confirm_passwdf80cbbad.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["63e0eada158810752a37a56c719e"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:35]]></Time>
+<TimeTick>1676444435</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="211" Source="Action1 [rediif]" SourceLine="5" >
+<Disp><![CDATA[confirm_passwdf80cbbad.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA["altemailf80cbbad"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:56]]></Time>
+<TimeTick>1676444456</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="253" status="Warning" Source="Action1 [rediif]" SourceLine="6" >
+<Disp><![CDATA["altemailf80cbbad"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA["altemailf80cbbad"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=text<br>name=altemailf80cbbad<br>micclass=WebEdit<br>html tag=INPUT<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (8 objects found)&nbsp;</FONT></u><br>
+type=text<br>micclass=WebEdit<br>html tag=INPUT<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=altemailf80cbbad<SPAN class=Failed> (Skipped)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 7 matches)</SPAN><br>max length=100<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>default value=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>class=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>rows=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>placeholder=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:56]]></Time>
+<TimeTick>1676444456</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="254" Source="Action1 [rediif]" SourceLine="6" >
+<Disp><![CDATA["altemailf80cbbad"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[altemailf80cbbad.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["rajyalakshmigopavaram@gmail.com"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:30:56]]></Time>
+<TimeTick>1676444456</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="255" Source="Action1 [rediif]" SourceLine="6" >
+<Disp><![CDATA[altemailf80cbbad.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA["chk_altemailf80cbbad"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:17]]></Time>
+<TimeTick>1676444477</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="296" status="Warning" Source="Action1 [rediif]" SourceLine="7" >
+<Disp><![CDATA["chk_altemailf80cbbad"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA["chk_altemailf80cbbad"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>type=checkbox<br>name=chk_altemailf80cbbad<br>micclass=WebCheckBox<br>html tag=INPUT<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=WebCheckBox<br>html tag=INPUT<br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:17]]></Time>
+<TimeTick>1676444477</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="297" Source="Action1 [rediif]" SourceLine="7" >
+<Disp><![CDATA["chk_altemailf80cbbad"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[chk_altemailf80cbbad.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:17]]></Time>
+<TimeTick>1676444477</TimeTick>
+<NodeArgs eType="Replay" icon="15" nRep="298" Source="Action1 [rediif]" SourceLine="7" >
+<Disp><![CDATA[chk_altemailf80cbbad.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA["hintqf80cbbad"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:38]]></Time>
+<TimeTick>1676444498</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="340" status="Warning" Source="Action1 [rediif]" SourceLine="8" >
+<Disp><![CDATA["hintqf80cbbad"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA["hintqf80cbbad"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>name=hint.*<br>micclass=WebList<br>html tag=SELECT<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (6 objects found)&nbsp;</FONT></u><br>
+micclass=WebList<br>html tag=SELECT<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=hint.*<SPAN class=Failed> (Skipped)</SPAN><br>html id=<SPAN class=passed> (Used</SPAN>, 5 matches)</SPAN><br>class=<SPAN class=passed> (Used</SPAN>, 5 matches)</SPAN><br>default value=Select from the list<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>items count=5<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>visible items=1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>visible=-1<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>acc_name=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>first item=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:38]]></Time>
+<TimeTick>1676444498</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="341" Source="Action1 [rediif]" SourceLine="8" >
+<Disp><![CDATA["hintqf80cbbad"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[hintqf80cbbad.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["What is your favourite food?"]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:38]]></Time>
+<TimeTick>1676444498</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="342" Source="Action1 [rediif]" SourceLine="8" >
+<Disp><![CDATA[hintqf80cbbad.Select]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="70" status="Warning" Source="Action1 [rediif]" SourceLine="0" >
+<Disp><![CDATA[Rediffmail Free Unlimited]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="67" status="Warning" Source="Action1 [rediif]" SourceLine="0" >
+<Disp><![CDATA[Rediffmail Free Unlimited]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[Rediffmail Free Unlimited]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:38]]></Time>
+<TimeTick>1676444498</TimeTick>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[Run Error]]></Obj>
+<Details plainTxt="False" ><![CDATA[The &quot;hintaf80cbbad&quot; WebEdit object was not found in the Object Repository.<BR/>Check the Object Repository to confirm that the object exists or to find the correct name for the object.<BR/>Line (10): &quot;Browser(&quot;Rediffmail Free Unlimited&quot;).Page(&quot;Rediffmail Free Unlimited&quot;).WebEdit(&quot;hintaf80cbbad&quot;).SetSecure &quot;63e0eafffe4829dfecaa81281206cb67&quot;&quot;. ]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:38]]></Time>
+<TimeTick>1676444498</TimeTick>
+<NodeArgs eType="Replay" icon="16" nRep="344" status="Failed" Source="Action1 [rediif]" SourceLine="9" >
+<Disp><![CDATA[Run Error]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[15-02-2023 - 12:31:41]]></Time>
+<TimeTick>1676444501</TimeTick>
+<NodeArgs eType="General" icon="17" nRep="345" status="Information" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="343" status="Failed" Source="Action1 [rediif]" SourceLine="9" >
+<Disp><![CDATA[Rediffmail Free Unlimited]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="15-02-2023 - 12:29:11" eTime="15-02-2023 - 12:31:41" passed="0" failed="1" warnings="7" ></Summary>
+<NodeArgs eType="StartAction" icon="13" nRep="65" status="Failed" >
+<Disp><![CDATA[Action1 [rediif] Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Summary sTime="15-02-2023 - 12:28:41" eTime="15-02-2023 - 12:31:41" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Failed" >
+<Disp><![CDATA[login Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[copyAction Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="15-02-2023 - 12:28:37" eTime="15-02-2023 - 12:31:41" passed="1" failed="1" warnings="7" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test copyAction Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
